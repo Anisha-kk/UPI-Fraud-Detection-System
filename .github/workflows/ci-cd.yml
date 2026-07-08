@@ -68,7 +68,7 @@ jobs:
 
       - name: Validate Docker Compose
         run: |
-          docker compose config
+          docker compose -f path/to/docker-compose.yaml config
       
       
   docker-publish:
