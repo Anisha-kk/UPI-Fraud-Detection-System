@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   api:
+    image: upi-fraud-detection-api:latest
     build: .
     container_name: upi-fraud-detection-api
     command: uvicorn app:app --host 0.0.0.0 --port 8000
@@ -16,6 +17,7 @@ services:
         condition: service_healthy
 
   streamlit:
+    image: upi-fraud-dashboard:latest
     build: .
     container_name: fraud-dashboard
     command: streamlit run monitor_dashboard.py --server.address=0.0.0.0 --server.port=8501
