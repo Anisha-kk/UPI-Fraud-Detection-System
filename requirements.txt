@@ -3,7 +3,7 @@ pandas
 fastapi
 pydantic
 joblib
-sklearn
+scikit-learn
 python-multipart
 psycopg2-binary
 xgboost
