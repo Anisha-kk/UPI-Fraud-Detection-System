@@ -38,7 +38,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest -v
+          python -m pytest -v
 
       - name: Build Docker Image
         run: |
