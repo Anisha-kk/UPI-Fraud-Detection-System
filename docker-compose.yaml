@@ -12,8 +12,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
-      - db
-          condition: service_healthy
+      db
+        condition: service_healthy
 
   streamlit:
     build: .
@@ -26,8 +26,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
-      - db
-          condition: service_healthy
+      db
+        condition: service_healthy
 
   db:
     image: postgres:16
