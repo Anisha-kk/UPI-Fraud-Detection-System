@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+reports/ 
+Screenshots/ 
+.pytest_cache/
+.ipynb_checkpoints/
+artifacts/eval_results_from_training/
+data/batches/
+data/processed/
+data/production/
+data/raw/
+important docs/
+old codes/
+config
+training/model.ipynb

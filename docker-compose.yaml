@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: upi-fraud-detection-api
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
+    depends_on:
+      - db
+          condition: service_healthy
+
+  streamlit:
+    build: .
+    container_name: fraud-dashboard
+    command: streamlit run monitor_dashboard.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
+    depends_on:
+      - db
+          condition: service_healthy
+
+  db:
+    image: postgres:16
+    container_name: fraud-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fraud_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

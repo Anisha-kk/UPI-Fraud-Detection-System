@@ -1,0 +1,17 @@
+numpy
+pandas
+fastapi
+pydantic
+joblib
+sklearn
+python-multipart
+psycopg2-binary
+xgboost
+optuna
+streamlit
+plotly
+evidently
+pytest 
+pytest-mock 
+httpx
+pytest-asyncio
