@@ -9,9 +9,15 @@ on:
       - main
       - master
       - develop
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
   pull_request:
     branches:
       - "*"
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
 
 jobs:
   test-build:
