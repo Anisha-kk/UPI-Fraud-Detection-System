@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+      - ./reports:/app/reports
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
@@ -30,6 +31,7 @@ services:
       - "8501:8501"
     volumes:
       - .:/app
+      - ./reports:/app/reports
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
