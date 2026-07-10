@@ -80,6 +80,9 @@ jobs:
         run: |
           docker compose build
       
+      - name: Start containers
+        run: |
+          docker compose up -d
       
   docker-publish:
     needs: test-build
