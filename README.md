@@ -166,7 +166,7 @@ docker compose down
 Clone the repository:
 
 ```bash
-git clone https://github.com/<username>/<repo-name>.git
+git clone https://github.com/Anisha-kk/UPI-Fraud-Detection-System.git
 cd <repo-name>
 ```
 
@@ -203,14 +203,14 @@ To run the published Docker image from Docker Hub without building locally:
 Clone the repository:
 
 ```bash
-git clone https://github.com/<username>/<repo-name>.git
+git clone https://github.com/Anisha-kk/UPI-Fraud-Detection-System.git
 cd <repo-name>
 ```
 
 Start the application:
 
 ```bash
-docker compose -f docker-compose-prod.yml up
+docker compose -f docker-compose-prod.yaml up
 ```
 
 Docker Compose automatically downloads the latest application image from Docker Hub if it is not already available locally.
