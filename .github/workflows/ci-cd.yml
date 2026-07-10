@@ -74,6 +74,7 @@ jobs:
       - name: Validate Docker Compose
         run: |
           docker compose config
+          docker compose -f docker-compose.prod.yml config
       
       - name: Build Docker Compose Images
         run: |
@@ -95,20 +96,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push API
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-detection-api:latest
-            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-detection-api:${{ github.sha }}
-
-      - name: Build and Push Dashboard
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-dashboard:latest
-            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-dashboard:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-detection:latest
+            ${{ secrets.DOCKER_USERNAME }}/upi-fraud-detection:${{ github.sha }}

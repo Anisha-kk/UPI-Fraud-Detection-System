@@ -2,14 +2,11 @@ version: "3.9"
 
 services:
   api:
-    image: upi-fraud-detection
-    build: .
+    image: anishakk/upi-fraud-detection:latest
     container_name: upi-fraud-detection-api
     command: uvicorn app:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
@@ -17,14 +14,11 @@ services:
         condition: service_healthy
 
   streamlit:
-    image: upi-fraud-detection
-    build: .
+    image: anishakk/upi-fraud-detection:latest
     container_name: fraud-dashboard
     command: streamlit run monitor_dashboard.py --server.address=0.0.0.0 --server.port=8501
     ports:
       - "8501:8501"
-    volumes:
-      - .:/app
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
@@ -46,8 +40,6 @@ services:
       retries: 5
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
