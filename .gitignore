@@ -6,7 +6,7 @@ Screenshots/
 .ipynb_checkpoints/
 artifacts/eval_results_from_training/
 data/batches/
-data/processed/
+data/processed/test.csv
 data/production/
 data/raw/
 important docs/
