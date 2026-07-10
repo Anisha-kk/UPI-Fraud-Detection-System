@@ -169,6 +169,11 @@ Clone the repository:
 git clone https://github.com/Anisha-kk/UPI-Fraud-Detection-System.git
 cd UPI-Fraud-Detection-System
 ```
+Pull the docker image
+
+```bash
+docker pull anishakk/upi-fraud-detection:latest
+```
 
 Build the Docker image and start all services:
 
@@ -218,7 +223,7 @@ Docker Compose automatically downloads the latest application image from Docker 
 To stop the application:
 
 ```bash
-docker compose -f docker-compose.prod.yml down
+docker compose -f docker-compose-prod.yml down
 ```
 
 ## Result Screenshots
