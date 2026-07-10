@@ -119,7 +119,26 @@ Stores the transaction input and pydantic validation errors, if any, that arose 
 4. **RemovedBatchRow**<br>
 In case of batch inference, during custom diagnostics, rows with missing or invalid data are deleted. The information about these deleted rows are stored in this table, along with the row index(in the original csv file), batch id etc.
 
-## Execution commands
+## CI/CD Pipeline
+
+This project uses GitHub Actions to automate testing and deployment.
+
+On every push and pull request:
+
+- Install project dependencies
+- Start a PostgreSQL service
+- Initialize the database schema
+- Execute the Pytest test suite
+- Validate the Docker Compose configuration
+- Build the Docker image
+
+On every push to the `main` branch:
+
+- Build the production Docker image
+- Tag the image with `latest` and the Git commit SHA
+- Push the image to Docker Hub
+
+## Local Execution commands
 1. data generation:<br>
 python -m data.data_generator<br>
 2. Data splitter<br>
@@ -141,6 +160,66 @@ To locally create docker image:<br>
 docker compose up --build<br>
 To stop and remove the containers, networks, and other resources created by docker compose up <br>
 docker compose down
+
+## Development Setup using Docker
+### Local Development
+Clone the repository:
+
+```bash
+git clone https://github.com/<username>/<repo-name>.git
+cd <repo-name>
+```
+
+Build the Docker image and start all services:
+
+```bash
+docker compose up --build
+```
+
+This command:
+
+- Builds the application image from the local source code
+- Starts the FastAPI service
+- Starts the Streamlit dashboard
+- Starts a PostgreSQL database
+
+Access the application:
+
+| Service | URL |
+|---------|-----|
+| FastAPI | http://localhost:8000 |
+| Swagger UI | http://localhost:8000/docs |
+| Streamlit Dashboard | http://localhost:8501 |
+
+To stop the application:
+
+```bash
+docker compose down
+```
+
+### Production Deployment
+To run the published Docker image from Docker Hub without building locally:
+
+Clone the repository:
+
+```bash
+git clone https://github.com/<username>/<repo-name>.git
+cd <repo-name>
+```
+
+Start the application:
+
+```bash
+docker compose -f docker-compose.prod.yml up
+```
+
+Docker Compose automatically downloads the latest application image from Docker Hub if it is not already available locally.
+
+To stop the application:
+
+```bash
+docker compose -f docker-compose.prod.yml down
+```
 
 ## Result Screenshots
 
