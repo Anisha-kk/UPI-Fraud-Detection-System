@@ -12,6 +12,6 @@ EXPOSE 8501
 
 COPY scripts/start.sh /start.sh
 
-RUN chmod +x /start.sh
+RUN sed -i 's/\r$//' /start.sh && chmod +x /start.sh
 
 ENTRYPOINT ["/start.sh"]

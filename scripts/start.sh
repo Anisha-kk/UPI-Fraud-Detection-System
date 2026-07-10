@@ -23,7 +23,6 @@ else:
     raise Exception("Database unavailable")
 PY
 
-
 echo "Creating database tables..."
 python -m db.init_db
 
