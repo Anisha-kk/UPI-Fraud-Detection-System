@@ -210,7 +210,7 @@ cd <repo-name>
 Start the application:
 
 ```bash
-docker compose -f docker-compose.prod.yml up
+docker compose -f docker-compose-prod.yml up
 ```
 
 Docker Compose automatically downloads the latest application image from Docker Hub if it is not already available locally.
