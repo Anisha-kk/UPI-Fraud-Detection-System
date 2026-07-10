@@ -76,13 +76,6 @@ jobs:
           docker compose config
           docker compose -f docker-compose-prod.yaml config
       
-      - name: Build Docker Compose Images
-        run: |
-          docker compose build
-      
-      - name: Start containers
-        run: |
-          docker compose up -d
       
   docker-publish:
     needs: test-build
