@@ -223,7 +223,7 @@ Docker Compose automatically downloads the latest application image from Docker 
 To stop the application:
 
 ```bash
-docker compose -f docker-compose-prod.yml down
+docker compose -f docker-compose-prod.yaml down
 ```
 
 ## Result Screenshots
