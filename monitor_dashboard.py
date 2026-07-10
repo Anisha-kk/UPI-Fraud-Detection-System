@@ -13,10 +13,31 @@ from dashboard.db_utils import (
 from dashboard.db_utils import orm_to_dict
 from dashboard import charts
 from collections import defaultdict
+import time
+from sqlalchemy import text
+from db.database import engine
 
 #Helper function
 def safe_has_columns(df, cols):
     return not df.empty and all(c in df.columns for c in cols)
+
+#-----------------------------
+#Checking whether DB is ready
+#-----------------------------
+def wait_for_predictions_table():
+    for _ in range(30):
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1 FROM predictions LIMIT 1"))
+            return True
+
+        except Exception:
+            time.sleep(2)
+    return False
+
+if not wait_for_predictions_table():
+    st.error("Database is not ready yet. Please refresh.")
+    st.stop()
 
 # -----------------------
 # Loading Data

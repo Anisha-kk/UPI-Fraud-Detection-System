@@ -27,6 +27,12 @@ PY
 echo "Creating database tables..."
 python -m db.init_db
 
+if [ $? -ne 0 ]; then
+    echo "Database initialization failed"
+    exit 1
+fi
+
+echo "Database initialization completed"
 
 echo "Starting application..."
 exec "$@"

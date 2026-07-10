@@ -9,6 +9,8 @@ from db.logger import log_validation_error
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi import Request
+from sqlalchemy import text
+from db.database import engine
 
 app = FastAPI(title="UPI TRANSACTION FRAUD DETECTION SYSTEM")
 
@@ -68,6 +70,19 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
                 "errors": exc.errors(),
             },
         )
+
+#Checks whether DB is correct   
+@app.get("/health")
+def health():
+
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1 FROM predictions LIMIT 1"))
+
+        return {"status": "ready"}
+
+    except Exception:
+        return {"status": "not_ready"}, 503
 
 app.include_router(predict_router)
 app.include_router(batch_router)

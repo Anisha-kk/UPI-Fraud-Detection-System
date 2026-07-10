@@ -15,6 +15,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   streamlit:
     image: upi-fraud-detection
@@ -28,7 +33,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/fraud_db
     depends_on:
-      db:
+      api:
         condition: service_healthy
 
   db:
