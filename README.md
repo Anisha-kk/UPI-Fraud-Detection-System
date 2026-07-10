@@ -167,7 +167,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Anisha-kk/UPI-Fraud-Detection-System.git
-cd <repo-name>
+cd UPI-Fraud-Detection-System
 ```
 
 Build the Docker image and start all services:
@@ -204,7 +204,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Anisha-kk/UPI-Fraud-Detection-System.git
-cd <repo-name>
+cd UPI-Fraud-Detection-System
 ```
 
 Start the application:
